@@ -3,14 +3,14 @@ import {Dimensions, View, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {DiscountsScreen} from './DiscountsScreen';
 
-export const ChildrensPrice = React.createContext();
-export const SoftcoverPrice = React.createContext();
-export const HardcoverPrice = React.createContext();
-export const AlbumsPrice = React.createContext();
-export const CassettesVhsPrice = React.createContext();
-export const CdsPrice = React.createContext();
-export const DvdsPrice = React.createContext();
-export const SetsPrice = React.createContext();
+export const ChildrensPrice = React.createContext('');
+export const SoftcoverPrice = React.createContext('');
+export const HardcoverPrice = React.createContext('');
+export const AlbumsPrice = React.createContext('');
+export const CassettesVhsPrice = React.createContext('');
+export const CdsPrice = React.createContext('');
+export const DvdsPrice = React.createContext('');
+export const SetsPrice = React.createContext('');
 
 const App = () => {
   const [childrensPrice, setChildrensPrice] = useState(0.49);
@@ -132,7 +132,7 @@ const App = () => {
 
   useEffect(() => {
     getChildrensPrice();
-  }, [childrensPrice]);
+  }, []);
   useEffect(() => {
     getSoftcoverPrice();
   }, [softcoverPrice]);
