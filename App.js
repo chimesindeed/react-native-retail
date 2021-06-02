@@ -3,7 +3,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {ScreenOne} from './ScreenOne';
-import {ScreenTwo} from './ScreenTwo';
+import {SalesFloorDisplayScreen} from './SalesFloorDisplayFeature';
 
 const Stack = createStackNavigator();
 const App = () => {
@@ -11,7 +11,10 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="ScreenOne" component={ScreenOne} />
-        <Stack.Screen name="ScreenTwo" component={ScreenTwo} />
+        <Stack.Screen
+          name="SalesFloorDisplayScreen"
+          component={SalesFloorDisplayScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
