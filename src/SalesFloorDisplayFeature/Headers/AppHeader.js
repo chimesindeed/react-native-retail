@@ -1,79 +1,113 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {
+  StoreAddress1,
+  StoreAddress2,
+  StorePhoneNumber,
+  DeliveryPeople,
+  InstagramLink,
+} from '../../App';
 
 const styles = StyleSheet.create({
-  AppHeader: {
+  headerContainer: {
     flexDirection: 'row',
-    alignSelf: 'flex-start',
+    justifyContent: 'space-between',
     marginBottom: 40,
   },
-
+  logoAndAddressContainer: {
+    flexDirection: 'column',
+    marginLeft: 20,
+    marginBottom: 20,
+  },
   SALogo: {
     letterSpacing: 1,
     fontWeight: '700',
     color: 'navy',
-    marginTop: 10,
-    marginLeft: 20,
-    marginBottom: 20,
     fontSize: 44,
+    marginBottom: -7,
   },
-  StoreHoursHeader: {
+
+  addressContainer: {
+    flexDirection: 'row',
+  },
+
+  addressText: {
+    color: 'navy',
+    paddingRight: 7,
+    fontSize: 12,
+  },
+  phoneText: {
+    color: 'navy',
+    fontSize: 14,
+    marginTop: -2,
+    marginLeft: 5,
+    color: 'maroon',
+    textDecorationLine: 'underline',
+  },
+
+  rightsideHeader: {
+    alignSelf: 'flex-end',
+  },
+  storeHoursContainer: {
+    flexDirection: 'column',
+    marginRight: 20,
+  },
+  storeHoursHeader: {
     alignSelf: 'center',
     letterSpacing: 1,
     fontWeight: '700',
     color: 'teal',
-    marginLeft: 35,
     marginBottom: 1,
     fontSize: 17,
   },
-  StoreHours: {
+  storeHours: {
     alignSelf: 'center',
     letterSpacing: 1,
     color: 'teal',
-    marginLeft: 35,
     marginBottom: 1,
     fontSize: 16,
   },
-  RestroomsHeader: {
+  restroomsContainer: {
+    flexDirection: 'column',
+    marginLeft: 90,
+  },
+
+  restroomsHeader: {
     alignSelf: 'center',
     letterSpacing: 1,
     fontWeight: '700',
     color: 'black',
     marginTop: 10,
-    marginLeft: 100,
     marginBottom: 1,
     fontSize: 17,
   },
-  Restrooms: {
+  restrooms: {
     alignSelf: 'center',
     letterSpacing: 1,
     color: 'black',
-    marginLeft: 100,
     marginBottom: 1,
     fontSize: 16,
   },
 
-  ExchangePolicyContainer: {
-    marginTop: 10,
-    marginLeft: 30,
+  exchangePolicyContainer: {
+    alignSelf: 'flex-end',
+    flexDirection: 'column',
+    marginTop: 20,
   },
 
-  ExchangePolicyHeader: {
-    alignSelf: 'center',
+  exchangePolicyHeader: {
     textDecorationLine: 'underline',
     letterSpacing: 1,
     fontWeight: '700',
     color: 'red',
-    marginLeft: 60,
     marginBottom: 1,
+    marginRight: 55,
     fontSize: 17,
   },
-  ExchangePolicy: {
-    alignSelf: 'center',
+  exchangePolicy: {
     letterSpacing: 1,
     fontWeight: '700',
     color: 'red',
-    marginLeft: 70,
     marginBottom: 1,
     fontSize: 16,
   },
@@ -82,27 +116,43 @@ const styles = StyleSheet.create({
 const SALogo = () => {
   return (
     <View>
-      <Text style={styles.SALogo}>Salvation Army Retail</Text>
+      <Text style={styles.SALogo}>S.A. Retail Hub</Text>
     </View>
   );
 };
 
+const StoreAddress = () => {
+  const [storeAddress1, setStoreAddress1] = useContext(StoreAddress1);
+  const [storeAddress2, setStoreAddress2] = useContext(StoreAddress2);
+  const [storePhone, setStorePhone] = useContext(StorePhoneNumber);
+  return (
+    <View style={styles.addressContainer}>
+      <Text style={styles.addressText}>{storeAddress1}</Text>
+      <Text style={styles.addressText}>{storeAddress2}</Text>
+      <Text style={styles.phoneText}>{storePhone}</Text>
+    </View>
+  );
+};
 const StoreDetails = () => {
   return (
-    <View>
-      <Text style={styles.StoreHoursHeader}>Hours Of Operation:</Text>
-      <Text style={styles.StoreHours}>
-        Monday - Saturday 10:00 AM - 7:00 PM
-      </Text>
-      <Text style={styles.RestroomsHeader}>Restrooms:</Text>
-      <Text style={styles.Restrooms}>
-        {'No Public Restrooms\nDuring The Pandemic'}
-      </Text>
-      <View style={styles.ExchangePolicyContainer}>
-        <Text style={styles.ExchangePolicyHeader}>Exchange Policy:</Text>
+    <View style={styles.rightsideHeader}>
+      <View style={styles.storeHoursContainer}>
+        <Text style={styles.storeHoursHeader}>Hours Of Operation:</Text>
+        <Text style={styles.storeHours}>
+          Monday - Saturday 10:00 AM - 7:00 PM
+        </Text>
+      </View>
+      <View style={styles.restroomsContainer}>
+        <Text style={styles.restroomsHeader}>Restrooms:</Text>
+        <Text style={styles.restrooms}>
+          {'No Public Restrooms\nDuring The Pandemic'}
+        </Text>
+      </View>
+      <View style={styles.exchangePolicyContainer}>
+        <Text style={styles.exchangePolicyHeader}>Exchange Policy:</Text>
         <Text
           style={
-            styles.ExchangePolicy
+            styles.exchangePolicy
           }>{`All Sales Are Final\nNo Refunds\nNo Exchanges`}</Text>
       </View>
     </View>
@@ -110,11 +160,12 @@ const StoreDetails = () => {
 };
 const AppHeader = () => {
   return (
-    <View>
-      <View style={styles.AppHeader}>
+    <View style={styles.headerContainer}>
+      <View style={styles.logoAndAddressContainer}>
         <SALogo />
-        <StoreDetails />
+        <StoreAddress />
       </View>
+      <StoreDetails />
     </View>
   );
 };

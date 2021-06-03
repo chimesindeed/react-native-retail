@@ -5,11 +5,11 @@ import {
   SoftcoverPrice,
   HardcoverPrice,
   AlbumsPrice,
-  CassettesVhsPrice,
+  TapesPrice,
   CdsPrice,
   DvdsPrice,
   SetsPrice,
-} from './App.js';
+} from '../App';
 
 const styles = StyleSheet.create({
   addLineSpace: {
@@ -74,11 +74,11 @@ const media = 'Media';
 const softcover = 'Softcover';
 const hardcover = 'Hardcover';
 const childrens = 'Childrens';
-const cassettesAndVHS = 'Cass / Vhs';
+const tapes = 'Cass / Vhs';
 const albums = 'Albums';
 const cds = 'Cds';
 const dvds = 'Dvds';
-const sets = 'Sets As Marked';
+const sets = 'Sets';
 
 const BooksHeader = () => {
   return (
@@ -136,7 +136,7 @@ export const Books = () => {
 
 export const Media = () => {
   const [albumsPrice] = useContext(AlbumsPrice);
-  const [cassettesVhsPrice] = useContext(CassettesVhsPrice);
+  const [tapesPrice] = useContext(TapesPrice);
   const [cdsPrice] = useContext(CdsPrice);
   const [dvdsPrice] = useContext(DvdsPrice);
   const [setsPrice] = useContext(SetsPrice);
@@ -145,8 +145,8 @@ export const Media = () => {
       <MediaHeader />
       <View>
         <View style={styles.combined}>
-          <Text style={styles.prices}>{`${cassettesVhsPrice}`}</Text>
-          <Text style={styles.media}>{`${cassettesAndVHS}`}</Text>
+          <Text style={styles.prices}>{`${tapesPrice}`}</Text>
+          <Text style={styles.media}>{`${tapes}`}</Text>
         </View>
         <View style={styles.combined}>
           <Text style={styles.prices}>{`${albumsPrice}`}</Text>
@@ -164,7 +164,7 @@ export const Media = () => {
           <Text
             style={Object.assign({}, styles.media, styles.addLineSpace, {
               color: 'beige',
-            })}>{`${sets}`}</Text>
+            })}>{`${sets} ${setsPrice}`}</Text>
         </View>
       </View>
     </View>

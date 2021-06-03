@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-import {View, Text, ScrollView, StyleSheet, Button} from 'react-native';
+import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import {Colors} from './ColorComponents/Colors';
 import {Books, Media, LineDivider} from './Media';
-import {EditPrices} from './EditPrices';
 const styles = StyleSheet.create({
   colorsView: {
     borderStyle: 'solid',
@@ -58,11 +57,6 @@ const PricingAndDiscountsHeader = () => {
 };
 
 export const PricingAndDiscounts = () => {
-  const [ops, setOps] = useState(false);
-  const handleClick = () => {
-    setOps(!ops);
-  };
-
   const handleNotes = () => {};
   return (
     <View>
@@ -78,11 +72,8 @@ export const PricingAndDiscounts = () => {
             <LineDivider />
             <Media />
           </View>
-          <View>{ops === true ? <EditPrices /> : null}</View>
         </ScrollView>
       </View>
-      <Button title="p" onPress={handleClick} />
-      <Button title="notes" onPress={handleNotes} />
     </View>
   );
 };
