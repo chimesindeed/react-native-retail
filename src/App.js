@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {EditPrices} from './SalesFloorDisplayFeature/EditPrices';
 import SalesFloorDisplayScreen from './SalesFloorDisplayFeature/SalesFloorDisplayScreen';
+import InventoryManagement from './InventoryManagementFeature/InventoryManagement';
 
 export const ChildrensPrice = React.createContext('');
 export const SoftcoverPrice = React.createContext('');
@@ -232,6 +233,10 @@ const App = () => {
                               <Drawer.Screen
                                 name="Price Configuration"
                                 component={EditPrices}
+                              />
+                              <Drawer.Screen
+                                name="Inventory Management"
+                                component={InventoryManagement}
                               />
                             </Drawer.Navigator>
                           </NavigationContainer>
