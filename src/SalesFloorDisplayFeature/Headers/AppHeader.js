@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   phoneText: {
-    color: 'navy',
     fontSize: 14,
     marginTop: -2,
     marginLeft: 5,
