@@ -159,48 +159,77 @@ export const EditPrices = () => {
     console.log(e);
     setSetsInput(e);
   };
-
+  const adjustFormatting = item => {
+    const arr = item.split('');
+    const space = ['  '];
+    const formatted = space.concat(arr).join('');
+    return formatted;
+  };
   const updateSoftcover = e => {
-    e.preventDefault();
-    setSoftcoverPrice(softcoverInput);
-    AsyncStorage.setItem('softcoverPrice', softcoverInput.toString());
+    let result;
+    softcoverInput.length === 3
+      ? (result = adjustFormatting(softcoverInput))
+      : (result = softcoverInput);
+    setSoftcoverPrice(result);
+    AsyncStorage.setItem('softcoverPrice', result.toString());
   };
   const updateHardcover = e => {
-    e.preventDefault();
-    setHardcoverPrice(hardcoverInput);
-    AsyncStorage.setItem('hardcoverPrice', hardcoverInput.toString());
+    let result;
+    hardcoverInput.length === 3
+      ? (result = adjustFormatting(hardcoverInput))
+      : (result = hardcoverInput);
+    setHardcoverPrice(result);
+    AsyncStorage.setItem('hardcoverPrice', result.toString());
   };
   const updateChildrens = e => {
-    e.preventDefault();
-    setChildrensPrice(childrensInput);
-    AsyncStorage.setItem('childrensPrice', childrensInput.toString());
+    let result;
+    childrensInput.length === 3
+      ? (result = adjustFormatting(childrensInput))
+      : (result = childrensInput);
+    setChildrensPrice(result);
+    AsyncStorage.setItem('childrensPrice', result.toString());
   };
 
   const updateTapes = e => {
-    e.preventDefault();
-    setTapesPrice(tapesInput);
-    AsyncStorage.setItem('tapesPrice', tapesInput.toString());
+    let result;
+    tapesInput.length === 3
+      ? (result = adjustFormatting(tapesInput))
+      : (result = tapesInput);
+    setTapesPrice(result);
+    AsyncStorage.setItem('tapesPrice', result.toString());
   };
   const updateAlbums = e => {
-    e.preventDefault();
-    setAlbumsPrice(albumsInput);
-    AsyncStorage.setItem('albumsPrice', albumsInput.toString());
+    let result;
+    albumsInput.length === 3
+      ? (result = adjustFormatting(albumsInput))
+      : (result = albumsInput);
+    setAlbumsPrice(result);
+    AsyncStorage.setItem('albumsPrice', result.toString());
   };
   const updateCds = e => {
-    e.preventDefault();
-    setCdsPrice(cdsInput);
-    AsyncStorage.setItem('cdsPrice', cdsInput.toString());
+    let result;
+    cdsInput.length === 3
+      ? (result = adjustFormatting(cdsInput))
+      : (result = cdsInput);
+    setCdsPrice(result);
+    AsyncStorage.setItem('cdsPrice', result.toString());
   };
 
   const updateDvds = e => {
-    e.preventDefault();
-    setDvdsPrice(dvdsInput);
-    AsyncStorage.setItem('dvdsPrice', dvdsInput.toString());
+    let result;
+    dvdsInput.length === 3
+      ? (result = adjustFormatting(dvdsInput))
+      : (result = dvdsInput);
+    setDvdsPrice(result);
+    AsyncStorage.setItem('dvdsPrice', result.toString());
   };
   const updateSets = e => {
-    e.preventDefault();
-    setSetsPrice(setsInput);
-    AsyncStorage.setItem('setsPrice', setsInput.toString());
+    let result;
+    setsInput.length === 3
+      ? (result = adjustFormatting(setsInput))
+      : (result = setsInput);
+    setSetsPrice(result);
+    AsyncStorage.setItem('setsPrice', result.toString());
   };
 
   return (
