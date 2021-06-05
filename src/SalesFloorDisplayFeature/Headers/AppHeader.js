@@ -3,7 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import {
   StoreAddress1,
   StoreAddress2,
-  StorePhoneNumber,
+  StorePhone,
   DeliveryPeople,
   InstagramLink,
 } from '../../App';
@@ -121,9 +121,9 @@ const SALogo = () => {
 };
 
 const StoreAddress = () => {
-  const [storeAddress1, setStoreAddress1] = useContext(StoreAddress1);
-  const [storeAddress2, setStoreAddress2] = useContext(StoreAddress2);
-  const [storePhone, setStorePhone] = useContext(StorePhoneNumber);
+  const [storeAddress1] = useContext(StoreAddress1);
+  const [storeAddress2] = useContext(StoreAddress2);
+  const [storePhone] = useContext(StorePhone);
   return (
     <View style={styles.addressContainer}>
       <Text style={styles.addressText}>{storeAddress1}</Text>

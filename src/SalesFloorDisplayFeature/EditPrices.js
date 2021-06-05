@@ -18,6 +18,9 @@ import {
   CdsPrice,
   DvdsPrice,
   SetsPrice,
+  StoreAddress1,
+  StoreAddress2,
+  StorePhone,
 } from '../App';
 
 let ScreenHeight = Dimensions.get('window').height;
@@ -97,9 +100,7 @@ const Header = () => {
     </View>
   );
 };
-const books = 'Books';
-const media = 'Media';
-const currentPrice = 'current price';
+
 const softcover = 'Softcover';
 const hardcover = 'Hardcover';
 const childrens = 'Childrens';
@@ -108,6 +109,9 @@ const albums = 'Albums';
 const cds = 'Cds';
 const dvds = 'Dvds';
 const sets = 'Sets';
+const lstoreAddress1 = 'Address1';
+const lstoreAddress2 = 'Address2';
+const lphone = 'Phone';
 export const EditPrices = () => {
   const [softcoverInput, setSoftcoverInput] = useState('');
   const [hardcoverInput, setHardcoverInput] = useState('');
@@ -118,6 +122,10 @@ export const EditPrices = () => {
   const [dvdsInput, setDvdsInput] = useState('');
   const [setsInput, setSetsInput] = useState('');
 
+  const [storeAddress1Input, setStoreAddress1Input] = useState('');
+  const [storeAddress2Input, setStoreAddress2Input] = useState('');
+  const [storePhoneInput, setStorePhoneInput] = useState('');
+
   const [softcoverPrice, setSoftcoverPrice] = useContext(SoftcoverPrice);
   const [hardcoverPrice, setHardcoverPrice] = useContext(HardcoverPrice);
   const [childrensPrice, setChildrensPrice] = useContext(ChildrensPrice);
@@ -126,6 +134,9 @@ export const EditPrices = () => {
   const [cdsPrice, setCdsPrice] = useContext(CdsPrice);
   const [dvdsPrice, setDvdsPrice] = useContext(DvdsPrice);
   const [setsPrice, setSetsPrice] = useContext(SetsPrice);
+  const [storeAddress1, setStoreAddress1] = useContext(StoreAddress1);
+  const [storeAddress2, setStoreAddress2] = useContext(StoreAddress2);
+  const [storePhone, setStorePhone] = useContext(StorePhone);
 
   const handleChangeSoftcover = e => {
     console.log(e);
@@ -158,6 +169,19 @@ export const EditPrices = () => {
   const handleChangeSets = e => {
     console.log(e);
     setSetsInput(e);
+  };
+
+  const handleChangeStoreAddress1 = e => {
+    console.log(e);
+    setStoreAddress1Input(e);
+  };
+  const handleChangeStoreAddress2 = e => {
+    console.log(e);
+    setStoreAddress2Input(e);
+  };
+  const handleChangeStorePhone = e => {
+    console.log(e);
+    setStorePhoneInput(e);
   };
   const adjustFormatting = item => {
     const arr = item.split('');
@@ -232,20 +256,35 @@ export const EditPrices = () => {
     AsyncStorage.setItem('setsPrice', result.toString());
   };
 
+  const updateStoreAddress1 = e => {
+    const result = storeAddress1Input;
+    setStoreAddress1(result);
+    AsyncStorage.setItem('storeAddress1', result.toString());
+  };
+
+  const updateStoreAddress2 = e => {
+    const result = storeAddress2Input;
+    setStoreAddress2(result);
+    AsyncStorage.setItem('storeAddress2', result.toString());
+  };
+  const updateStorePhone = e => {
+    const result = storePhoneInput;
+    setStorePhone(result);
+    AsyncStorage.setItem('storePhone', result.toString());
+  };
   return (
     <View style={styles.pageContainer}>
       <Header />
 
       <ScrollView>
         <View style={styles.itemGroup}>
-          <Text style={styles.itemHeader}>{softcover}</Text>
+          <Text
+            style={styles.itemHeader}>{`${softcover}: ${softcoverPrice}`}</Text>
           <View style={styles.sideBySide}>
             <TextInput
               style={styles.inputBox}
               onChangeText={handleChangeSoftcover}
               keyboardType="numeric"
-              placeholder={softcoverPrice.toString()}
-              placeholderTextColor="white"
             />
             <View style={styles.dividerLine} />
             <Button title="update" onPress={updateSoftcover} />
@@ -253,14 +292,13 @@ export const EditPrices = () => {
         </View>
 
         <View style={styles.itemGroup}>
-          <Text style={styles.itemHeader}>{hardcover}</Text>
+          <Text
+            style={styles.itemHeader}>{`${hardcover}: ${hardcoverPrice}`}</Text>
           <View style={styles.sideBySide}>
             <TextInput
               style={styles.inputBox}
               onChangeText={handleChangeHardcover}
               keyboardType="numeric"
-              placeholder={hardcoverPrice.toString()}
-              placeholderTextColor="white"
             />
             <View style={styles.dividerLine} />
             <Button title="update" onPress={updateHardcover} />
@@ -268,14 +306,13 @@ export const EditPrices = () => {
         </View>
 
         <View style={styles.itemGroup}>
-          <Text style={styles.itemHeader}>{childrens}</Text>
+          <Text
+            style={styles.itemHeader}>{`${childrens}: ${childrensPrice}`}</Text>
           <View style={styles.sideBySide}>
             <TextInput
               style={styles.inputBox}
               onChangeText={handleChangeChildrens}
               keyboardType="numeric"
-              placeholder={childrensPrice.toString()}
-              placeholderTextColor="white"
             />
             <View style={styles.dividerLine} />
             <Button title="update" onPress={updateChildrens} />
@@ -283,14 +320,15 @@ export const EditPrices = () => {
         </View>
 
         <View style={styles.itemGroup}>
-          <Text style={styles.itemHeader}>{cassettesAndVHS}</Text>
+          <Text
+            style={
+              styles.itemHeader
+            }>{`${cassettesAndVHS}: ${tapesPrice}`}</Text>
           <View style={styles.sideBySide}>
             <TextInput
               style={styles.inputBox}
               onChangeText={handleChangeTapes}
               keyboardType="numeric"
-              placeholder={tapesPrice.toString()}
-              placeholderTextColor="white"
             />
             <View style={styles.dividerLine} />
             <Button title="update" onPress={updateTapes} />
@@ -298,14 +336,12 @@ export const EditPrices = () => {
         </View>
 
         <View style={styles.itemGroup}>
-          <Text style={styles.itemHeader}>{albums}</Text>
+          <Text style={styles.itemHeader}>{`${albums}: ${albumsPrice}`}</Text>
           <View style={styles.sideBySide}>
             <TextInput
               style={styles.inputBox}
               onChangeText={handleChangeAlbums}
               keyboardType="numeric"
-              placeholder={albumsPrice.toString()}
-              placeholderTextColor="white"
             />
             <View style={styles.dividerLine} />
             <Button title="update" onPress={updateAlbums} />
@@ -313,14 +349,12 @@ export const EditPrices = () => {
         </View>
 
         <View style={styles.itemGroup}>
-          <Text style={styles.itemHeader}>{cds}</Text>
+          <Text style={styles.itemHeader}>{`${cds}: ${cdsPrice}`}</Text>
           <View style={styles.sideBySide}>
             <TextInput
               style={styles.inputBox}
               onChangeText={handleChangeCds}
               keyboardType="numeric"
-              placeholder={cdsPrice.toString()}
-              placeholderTextColor="white"
             />
             <View style={styles.dividerLine} />
             <Button title="update" onPress={updateCds} />
@@ -328,14 +362,12 @@ export const EditPrices = () => {
         </View>
 
         <View style={styles.itemGroup}>
-          <Text style={styles.itemHeader}>{dvds}</Text>
+          <Text style={styles.itemHeader}>{`${dvds}: ${dvdsPrice}`}</Text>
           <View style={styles.sideBySide}>
             <TextInput
               style={styles.inputBox}
               onChangeText={handleChangeDvds}
               keyboardType="numeric"
-              placeholder={dvdsPrice.toString()}
-              placeholderTextColor="white"
             />
             <View style={styles.dividerLine} />
             <Button title="update" onPress={updateDvds} />
@@ -343,16 +375,54 @@ export const EditPrices = () => {
         </View>
 
         <View style={styles.itemGroup}>
-          <Text style={styles.itemHeader}>{sets}</Text>
+          <Text style={styles.itemHeader}>{`${sets}: ${setsPrice}`}</Text>
           <View style={styles.sideBySide}>
             <TextInput
               style={styles.inputBox}
               onChangeText={handleChangeSets}
-              placeholder={setsPrice.toString()}
-              placeholderTextColor="white"
             />
             <View style={styles.dividerLine} />
             <Button title="update" onPress={updateSets} />
+          </View>
+        </View>
+
+        <View style={styles.itemGroup}>
+          <Text
+            style={
+              styles.itemHeader
+            }>{`${lstoreAddress1}: ${storeAddress2}`}</Text>
+          <View style={styles.sideBySide}>
+            <TextInput
+              style={styles.inputBox}
+              onChangeText={handleChangeStoreAddress1}
+            />
+            <View style={styles.dividerLine} />
+            <Button title="update" onPress={updateStoreAddress1} />
+          </View>
+        </View>
+        <View style={styles.itemGroup}>
+          <Text
+            style={
+              styles.itemHeader
+            }>{`${lstoreAddress2}: ${storeAddress2}`}</Text>
+          <View style={styles.sideBySide}>
+            <TextInput
+              style={styles.inputBox}
+              onChangeText={handleChangeStoreAddress2}
+            />
+            <View style={styles.dividerLine} />
+            <Button title="update" onPress={updateStoreAddress2} />
+          </View>
+        </View>
+        <View style={styles.itemGroup}>
+          <Text style={styles.itemHeader}>{`${lphone}: ${storePhone}`}</Text>
+          <View style={styles.sideBySide}>
+            <TextInput
+              style={styles.inputBox}
+              onChangeText={handleChangeStorePhone}
+            />
+            <View style={styles.dividerLine} />
+            <Button title="update" onPress={updateStorePhone} />
           </View>
         </View>
       </ScrollView>
