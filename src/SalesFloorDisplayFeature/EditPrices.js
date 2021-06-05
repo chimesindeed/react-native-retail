@@ -138,6 +138,10 @@ export const EditPrices = () => {
   const [storeAddress2, setStoreAddress2] = useContext(StoreAddress2);
   const [storePhone, setStorePhone] = useContext(StorePhone);
 
+  const input = React.createRef();
+  const clearInput = () => {
+    input.current.clear();
+  };
   const handleChangeSoftcover = e => {
     console.log(e);
     setSoftcoverInput(e);
@@ -189,6 +193,7 @@ export const EditPrices = () => {
     const formatted = space.concat(arr).join('');
     return formatted;
   };
+
   const updateSoftcover = e => {
     let result;
     softcoverInput.length === 3
@@ -196,6 +201,7 @@ export const EditPrices = () => {
       : (result = softcoverInput);
     setSoftcoverPrice(result);
     AsyncStorage.setItem('softcoverPrice', result.toString());
+    clearInput();
   };
   const updateHardcover = e => {
     let result;
@@ -204,6 +210,7 @@ export const EditPrices = () => {
       : (result = hardcoverInput);
     setHardcoverPrice(result);
     AsyncStorage.setItem('hardcoverPrice', result.toString());
+    clearInput();
   };
   const updateChildrens = e => {
     let result;
@@ -212,6 +219,7 @@ export const EditPrices = () => {
       : (result = childrensInput);
     setChildrensPrice(result);
     AsyncStorage.setItem('childrensPrice', result.toString());
+    clearInput();
   };
 
   const updateTapes = e => {
@@ -221,6 +229,7 @@ export const EditPrices = () => {
       : (result = tapesInput);
     setTapesPrice(result);
     AsyncStorage.setItem('tapesPrice', result.toString());
+    clearInput();
   };
   const updateAlbums = e => {
     let result;
@@ -229,6 +238,7 @@ export const EditPrices = () => {
       : (result = albumsInput);
     setAlbumsPrice(result);
     AsyncStorage.setItem('albumsPrice', result.toString());
+    clearInput();
   };
   const updateCds = e => {
     let result;
@@ -237,6 +247,7 @@ export const EditPrices = () => {
       : (result = cdsInput);
     setCdsPrice(result);
     AsyncStorage.setItem('cdsPrice', result.toString());
+    clearInput();
   };
 
   const updateDvds = e => {
@@ -246,6 +257,7 @@ export const EditPrices = () => {
       : (result = dvdsInput);
     setDvdsPrice(result);
     AsyncStorage.setItem('dvdsPrice', result.toString());
+    clearInput();
   };
   const updateSets = e => {
     let result;
@@ -254,23 +266,27 @@ export const EditPrices = () => {
       : (result = setsInput);
     setSetsPrice(result);
     AsyncStorage.setItem('setsPrice', result.toString());
+    clearInput();
   };
 
   const updateStoreAddress1 = e => {
     const result = storeAddress1Input;
     setStoreAddress1(result);
     AsyncStorage.setItem('storeAddress1', result.toString());
+    clearInput();
   };
 
   const updateStoreAddress2 = e => {
     const result = storeAddress2Input;
     setStoreAddress2(result);
     AsyncStorage.setItem('storeAddress2', result.toString());
+    clearInput();
   };
   const updateStorePhone = e => {
     const result = storePhoneInput;
     setStorePhone(result);
     AsyncStorage.setItem('storePhone', result.toString());
+    clearInput();
   };
   return (
     <View style={styles.pageContainer}>
@@ -282,6 +298,7 @@ export const EditPrices = () => {
             style={styles.itemHeader}>{`${softcover}: ${softcoverPrice}`}</Text>
           <View style={styles.sideBySide}>
             <TextInput
+              ref={input}
               style={styles.inputBox}
               onChangeText={handleChangeSoftcover}
               keyboardType="numeric"
@@ -296,6 +313,7 @@ export const EditPrices = () => {
             style={styles.itemHeader}>{`${hardcover}: ${hardcoverPrice}`}</Text>
           <View style={styles.sideBySide}>
             <TextInput
+              ref={input}
               style={styles.inputBox}
               onChangeText={handleChangeHardcover}
               keyboardType="numeric"
@@ -310,6 +328,7 @@ export const EditPrices = () => {
             style={styles.itemHeader}>{`${childrens}: ${childrensPrice}`}</Text>
           <View style={styles.sideBySide}>
             <TextInput
+              ref={input}
               style={styles.inputBox}
               onChangeText={handleChangeChildrens}
               keyboardType="numeric"
@@ -326,6 +345,7 @@ export const EditPrices = () => {
             }>{`${cassettesAndVHS}: ${tapesPrice}`}</Text>
           <View style={styles.sideBySide}>
             <TextInput
+              ref={input}
               style={styles.inputBox}
               onChangeText={handleChangeTapes}
               keyboardType="numeric"
@@ -339,6 +359,7 @@ export const EditPrices = () => {
           <Text style={styles.itemHeader}>{`${albums}: ${albumsPrice}`}</Text>
           <View style={styles.sideBySide}>
             <TextInput
+              ref={input}
               style={styles.inputBox}
               onChangeText={handleChangeAlbums}
               keyboardType="numeric"
@@ -352,6 +373,7 @@ export const EditPrices = () => {
           <Text style={styles.itemHeader}>{`${cds}: ${cdsPrice}`}</Text>
           <View style={styles.sideBySide}>
             <TextInput
+              ref={input}
               style={styles.inputBox}
               onChangeText={handleChangeCds}
               keyboardType="numeric"
@@ -365,6 +387,7 @@ export const EditPrices = () => {
           <Text style={styles.itemHeader}>{`${dvds}: ${dvdsPrice}`}</Text>
           <View style={styles.sideBySide}>
             <TextInput
+              ref={input}
               style={styles.inputBox}
               onChangeText={handleChangeDvds}
               keyboardType="numeric"
@@ -378,6 +401,7 @@ export const EditPrices = () => {
           <Text style={styles.itemHeader}>{`${sets}: ${setsPrice}`}</Text>
           <View style={styles.sideBySide}>
             <TextInput
+              ref={input}
               style={styles.inputBox}
               onChangeText={handleChangeSets}
             />
@@ -390,9 +414,10 @@ export const EditPrices = () => {
           <Text
             style={
               styles.itemHeader
-            }>{`${lstoreAddress1}: ${storeAddress2}`}</Text>
+            }>{`${lstoreAddress1}: ${storeAddress1}`}</Text>
           <View style={styles.sideBySide}>
             <TextInput
+              ref={input}
               style={styles.inputBox}
               onChangeText={handleChangeStoreAddress1}
             />
@@ -407,6 +432,7 @@ export const EditPrices = () => {
             }>{`${lstoreAddress2}: ${storeAddress2}`}</Text>
           <View style={styles.sideBySide}>
             <TextInput
+              ref={input}
               style={styles.inputBox}
               onChangeText={handleChangeStoreAddress2}
             />
@@ -418,6 +444,7 @@ export const EditPrices = () => {
           <Text style={styles.itemHeader}>{`${lphone}: ${storePhone}`}</Text>
           <View style={styles.sideBySide}>
             <TextInput
+              ref={input}
               style={styles.inputBox}
               onChangeText={handleChangeStorePhone}
             />
