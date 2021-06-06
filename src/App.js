@@ -3,7 +3,9 @@ import React, {useState, useEffect, createContext} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+
 import {EditPrices} from './SalesFloorDisplayFeature/EditPrices';
+import {StoreLocatorScreen} from './StoreLocatorFeature/StoreLocatorScreen';
 import SalesFloorDisplayScreen from './SalesFloorDisplayFeature/SalesFloorDisplayScreen';
 import InventoryManagement from './InventoryManagementFeature/InventoryManagement';
 
@@ -18,7 +20,7 @@ export const SetsPrice = React.createContext('');
 
 export const StoreAddress1 = React.createContext('');
 export const StoreAddress2 = React.createContext('');
-export const StorePhoneNumber = React.createContext('');
+export const StorePhone = React.createContext('');
 export const DeliveryPeople = React.createContext('');
 export const InstagramLink = React.createContext('');
 
@@ -165,14 +167,14 @@ const App = () => {
     }
   };
   const getStorePhone = async () => {
-    let storePhone;
+    let astorePhone;
     try {
-      storePhone = await AsyncStorage.getItem('storePhone');
+      astorePhone = await AsyncStorage.getItem('storePhone');
     } catch (e) {
       console.log(e);
     } finally {
-      if (storePhone !== null) {
-        setStorePhone(storePhone);
+      if (astorePhone !== null) {
+        setStorePhone(astorePhone);
       }
     }
   };
@@ -213,7 +215,7 @@ const App = () => {
   return (
     <StoreAddress1.Provider value={[storeAddress1, setStoreAddress1]}>
       <StoreAddress2.Provider value={[storeAddress2, setStoreAddress2]}>
-        <StorePhoneNumber.Provider value={[storePhone, setStorePhone]}>
+        <StorePhone.Provider value={[storePhone, setStorePhone]}>
           <ChildrensPrice.Provider value={[childrensPrice, setChildrensPrice]}>
             <SoftcoverPrice.Provider
               value={[softcoverPrice, setSoftcoverPrice]}>
@@ -231,12 +233,16 @@ const App = () => {
                                 component={SalesFloorDisplayScreen}
                               />
                               <Drawer.Screen
-                                name="Price Configuration"
+                                name="Price & Header Settings"
                                 component={EditPrices}
                               />
                               <Drawer.Screen
                                 name="Inventory Management"
                                 component={InventoryManagement}
+                              />
+                              <Drawer.Screen
+                                name="Store Locator"
+                                component={StoreLocatorScreen}
                               />
                             </Drawer.Navigator>
                           </NavigationContainer>
@@ -248,7 +254,7 @@ const App = () => {
               </HardcoverPrice.Provider>
             </SoftcoverPrice.Provider>
           </ChildrensPrice.Provider>
-        </StorePhoneNumber.Provider>
+        </StorePhone.Provider>
       </StoreAddress2.Provider>
     </StoreAddress1.Provider>
   );
