@@ -40,9 +40,9 @@ export const StoreLocatorScreen = () => {
     setZipCodeInput(e);
   };
 
-  const querySite = () => {
-    return 'a';
-  };
+  // const $ = cheerio.load(htmlString);
+  // console.log($);
+
   return (
     <View style={styles.appContainer}>
       <Text>`Zip Code: ${zipCodeInput}`</Text>
@@ -53,7 +53,7 @@ export const StoreLocatorScreen = () => {
         keyboardType="numeric"
       />
       <View>
-        <Button title="update" onPress={querySite} />
+        <Button title="update" />
       </View>
     </View>
   );
